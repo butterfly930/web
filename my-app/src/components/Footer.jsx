@@ -1,7 +1,7 @@
 function Footer() {
     return(
-        <div style={{border:"1px solid white", margin:"0 auto", position:"fixed", bottom:"0", width:"100%", textAlign:"center"}}>
-        <p> Footerrrr</p>
+        <div style={{ margin:"0 auto", position:"fixed", bottom:"0", width:"100%", textAlign:"center", backgroundColor:"#1a1a1a", padding:"1rem 0"}}>
+        <p style={{margin:"0", color:"white"}}> Footerrrr</p>
         </div>
     );
 };
