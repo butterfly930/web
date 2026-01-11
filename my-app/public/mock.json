@@ -2,8 +2,8 @@
   {
     "id": 1,
     "name": "Samsung Galaxy S24",
-    "description": "Latest Samsung flagship with advanced features and stunning display",
-    "price": 999,
+    "description": "Pajisja më e fundit kryesore e Samsungut me veçori të përparuara dhe ekran mahnitës",
+    "price": 53990,
     "image": "/src/assets/images/Samsung _Galaxy_S24.jpg",
     "brand": "Samsung",
     "category": "New"
@@ -11,8 +11,8 @@
   {
     "id": 2,
     "name": "Apple iPhone 15 Pro",
-    "description": "Premium iPhone with A17 Pro chip and advanced camera system",
-    "price": 1099,
+    "description": "iPhone premium me çip A17 Pro dhe sistem të avancuar kamereje",
+    "price": 84990,
     "image": "/src/assets/images/Apple_Iphone_15_Pro.jpg",
     "brand": "Apple",
     "category": "New"
@@ -20,8 +20,8 @@
   {
     "id": 3,
     "name": "Xiaomi 13 Ultra",
-    "description": "Powerful smartphone with exceptional camera and performance",
-    "price": 699,
+    "description": "Smartphone i fuqishëm me kamerë dhe performancë të jashtëzakonshme",
+    "price": 10500,
     "image": "/src/assets/images/Xiaomi_13_Ultra.jpg",
     "brand": "Xiaomi",
     "category": "Order"
@@ -29,8 +29,8 @@
   {
     "id": 4,
     "name": "Samsung Galaxy A54",
-    "description": "Affordable Samsung phone with great features and performance",
-    "price": 449,
+    "description": "Telefon Samsung i përballueshëm me veçori dhe performancë të shkëlqyer",
+    "price": 65000,
     "image": "/src/assets/images/Samsung_Galaxy_A54.jpg",
     "brand": "Samsung",
     "category": "Order"
@@ -38,8 +38,8 @@
   {
     "id": 5,
     "name": "Apple AirPods Pro",
-    "description": "Premium wireless earbuds with noise cancellation",
-    "price": 249,
+    "description": "Kufje wireless premium me anulim zhurme",
+    "price": 20000,
     "image": "/src/assets/images/Apple_Airpods_Pro.jpg",
     "brand": "Apple",
     "category": "New"
@@ -47,8 +47,8 @@
   {
     "id": 6,
     "name": "Xiaomi Redmi Note 12",
-    "description": "Budget-friendly phone with solid performance and battery life",
-    "price": 299,
+    "description": "Telefon i përballueshëm me performancë të mirë dhe jetëgjatësi baterie",
+    "price": 12000,
     "image": "/src/assets/images/Xiaomi_Redmi_Note_12.jpg",
     "brand": "Xiaomi",
     "category": "Order"
@@ -56,8 +56,8 @@
   {
     "id": 7,
     "name": "Samsung Galaxy Watch 6",
-    "description": "Advanced smartwatch with health tracking and long battery life",
-    "price": 399,
+    "description": "Smartwatch i avancuar me ndjekje shëndetësore dhe jetëgjatësi të gjatë baterie",
+    "price": 34099,
     "image": "/src/assets/images/Samsung_Galaxy_Watch_6.jpg",
     "brand": "Samsung",
     "category": "Preorder"
@@ -65,8 +65,8 @@
   {
     "id": 8,
     "name": "Apple MacBook Air M3",
-    "description": "Ultraportable laptop with powerful M3 chip",
-    "price": 1299,
+    "description": "Laptop ultraportabël me çip të fuqishëm M3",
+    "price": 120000,
     "image": "/src/assets/images/Apple_Macbook_Air_M3.jpg",
     "brand": "Apple",
     "category": "New"
@@ -74,8 +74,8 @@
   {
     "id": 9,
     "name": "Xiaomi Mi Band 8",
-    "description": "Affordable fitness tracker with comprehensive health features",
-    "price": 59,
+    "description": "Pajisje për ndjekjen e fitnesit me karakteristika të gjera shëndetësore",
+    "price": 7900,
     "image": "/src/assets/images/Xiaomi-Mi-Band-8.jpg",
     "brand": "Xiaomi",
     "category": "Order"
@@ -83,10 +83,19 @@
   {
     "id": 10,
     "name": "Samsung Galaxy Buds2 Pro",
-    "description": "Premium earbuds with excellent sound quality and ANC",
-    "price": 229,
+    "description": "Kufje premium me cilësi të shkëlqyer të tingullit dhe ANC",
+    "price": 13000,
     "image": "/src/assets/images/Samsung-Galaxy-Buds-2-Pro.jpg",
     "brand": "Samsung",
     "category": "Preorder"
+  },
+  {
+    "id": 11,
+    "name": "Apple iPad Pro M2",
+    "description": "Tablet i fuqishëm me ekran të mrekullueshëm dhe performancë të lartë",
+    "price": 95000,
+    "image": "src/assets/images/Apple_Ipad_Pro_M2.jpg",
+    "brand": "Apple",
+    "category": "New"
   }
 ]

@@ -5,21 +5,7 @@
     padding-top: 20px;
     width: 100%;
     text-align: center;
-}
-
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+    
 }
 
 @keyframes logo-spin {
@@ -32,26 +18,15 @@
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
-    }
-}
-
 .card {
-    padding: 2em;
-}
-
-.read-the-docs {
-    color: #ca0707;
+    padding: 5px;
 }
 
 /* Responsive card grid */
 .products-container {
     display: grid;
     gap: 20px;
-    padding: 20px;
-    background-color: #1a1a1a;
+    background-color: #ffffff;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
@@ -59,29 +34,29 @@
     overflow-x: hidden;
 }
 
-/* Desktop: 4 cards per row */
+/* Desktop: 3 cards per row */
 @media (min-width: 1200px) {
     .products-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 /* Tablet/smaller than desktop: 3 cards per row */
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 740px) and (max-width: 1199px) {
     .products-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 /* Small tablets: 2 cards per row */
-@media (min-width: 576px) and (max-width: 767px) {
+@media (min-width: 515px) and (max-width: 739px) {
     .products-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 /* Mobile: 1 card per row */
-@media (max-width: 575px) {
+@media (max-width: 515px) {
     .products-container {
         grid-template-columns: 1fr;
         padding: 10px;
@@ -93,6 +68,10 @@
 .search-input {
     width: 100%;
     max-width: 400px;
+}
+
+.price-text {
+    color: #d00000 !important;
 }
 
 @media (max-width: 575px) {

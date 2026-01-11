@@ -11,14 +11,21 @@
   },
   "dependencies": {
     "@heroui/react": "^2.8.7",
+    "@hookform/resolvers": "^5.2.2",
     "@material-tailwind/react": "^2.1.10",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
     "react": "^19.2.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.2.0",
-    "react-router-dom": "^7.11.0"
+    "react-hook-form": "^7.71.0",
+    "react-router-dom": "^7.11.0",
+    "tailwindcss": "^4.1.18",
+    "zod": "^4.3.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
