@@ -1,9 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Header from "../components/ui/layout/Header";
 import Footer from "../components/ui/layout/Footer";
 import FiltersSidebar from "../components/ui/filters/FiltersSidebar";
 import ProductGrid from "../components/ui/products/ProductGrid";
 import AuthModal from "../components/ui/modals/AuthModal";
+import mockData from "../../public/mock.json";
 
 interface Product {
   id: number;
@@ -60,6 +62,9 @@ const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const initialFilterState = getFilterStateFromURL();
   const [searchTerm, setSearchTerm] = useState(initialFilterState.searchTerm);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(initialFilterState.searchTerm);
+  const [isSearching, setIsSearching] = useState(false);
+  const debounceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
     initialFilterState.selectedCategories
   );
@@ -76,16 +81,31 @@ const Home = () => {
 
   // Load products
   useEffect(() => {
-    fetch("/mock.json")
-      .then((res) => res.json())
-      .then((data: Product[]) => setProducts(data))
-      .catch(console.error);
+    setProducts(mockData as Product[])
   }, []);
+
+  // Debounce search term
+  useEffect(() => {
+    setIsSearching(true);
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+    debounceTimer.current = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+      setIsSearching(false);
+    }, 500);
+
+    return () => {
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current);
+      }
+    };
+  }, [searchTerm]);
 
   // Update URL when filters change
   useEffect(() => {
-    updateURLWithFilterState(searchTerm, selectedCategories, selectedBrands, priceRange);
-  }, [searchTerm, selectedCategories, selectedBrands, priceRange]);
+    updateURLWithFilterState(debouncedSearchTerm, selectedCategories, selectedBrands, priceRange);
+  }, [debouncedSearchTerm, selectedCategories, selectedBrands, priceRange]);
 
   // Extract unique categories and brands
   const categories = useMemo(() => {
@@ -101,7 +121,7 @@ const Home = () => {
     return products.filter((p) => {
       const matchSearch = p.name
         .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+        .includes(debouncedSearchTerm.toLowerCase());
 
       const matchCategory =
         selectedCategories.length === 0 ||
@@ -124,7 +144,7 @@ const Home = () => {
 
       return matchSearch && matchCategory && matchBrand && matchPrice;
     });
-  }, [products, searchTerm, selectedCategories, selectedBrands, priceRange]);
+  }, [products, debouncedSearchTerm, selectedCategories, selectedBrands, priceRange]);
 
   return (
     <>
@@ -150,21 +170,28 @@ const Home = () => {
         }}
       />
 
-      <main className="bg-gray-100 min-h-screen">
-        <div className="max-w-7xl mx-auto px-6 pt-6 pb-2 pl-52 ">
+      <main className="bg-gray-100 min-h-screen flex flex-col items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 pb-2 flex flex-col items-center justify-center">
           <label htmlFor="product-search" className="sr-only">
-            Search products
+            Kërko produktet
           </label>
-          <input
-            id="product-search"
-            type="search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search products..."
-            className="w-full max-w-xl rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <div className="relative w-full max-w-xl">
+            <input
+              id="product-search"
+              type="search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Kërko produktet..."
+              className="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          {isSearching && (
+            <div className="mt-3 flex justify-center">
+              <AiOutlineLoading3Quarters className="w-10 h-10 text-red-500 animate-spin" />
+            </div>
+          )}
         </div>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row gap-6 pl-39">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col lg:flex-row gap-4 lg:gap-6">
           <FiltersSidebar
             categories={categories}
             selectedCategories={selectedCategories}

@@ -16,10 +16,10 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 overflow-y-auto"
       onClick={onClose}
     >
-      <div onClick={(e) => e.stopPropagation()}>
+      <div onClick={(e) => e.stopPropagation()} className="w-full max-w-md my-8">
         {showLogin && <Login onClose={onClose} />}
         {showSignup && <Signup onClose={onClose} />}
       </div>
