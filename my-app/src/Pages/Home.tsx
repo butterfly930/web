@@ -6,6 +6,7 @@ import FiltersSidebar from "../components/ui/filters/FiltersSidebar";
 import ProductGrid from "../components/ui/products/ProductGrid";
 import AuthModal from "../components/ui/modals/AuthModal";
 import mockData from "../../public/mock.json";
+// TODO: review this code
 
 interface Product {
   id: number;
