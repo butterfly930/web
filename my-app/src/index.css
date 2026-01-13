@@ -54,6 +54,18 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+.red-underline {
+  text-decoration: none;
+}
+
+.red-underline:hover,
+.red-underline:active {
+  color: #dc2626 !important; 
+  text-decoration: underline;
+  text-decoration-color: #dc2626;
+  text-underline-offset: 4px;
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

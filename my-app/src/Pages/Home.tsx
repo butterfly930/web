@@ -151,7 +151,20 @@ const Home = () => {
       />
 
       <main className="bg-gray-100 min-h-screen">
-        <div className="max-w-7xl mx-auto p-4 flex flex-col md:flex-row gap-6">
+        <div className="max-w-7xl mx-auto px-6 pt-6 pb-2 pl-52 ">
+          <label htmlFor="product-search" className="sr-only">
+            Search products
+          </label>
+          <input
+            id="product-search"
+            type="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search products..."
+            className="w-full max-w-xl rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row gap-6 pl-39">
           <FiltersSidebar
             categories={categories}
             selectedCategories={selectedCategories}

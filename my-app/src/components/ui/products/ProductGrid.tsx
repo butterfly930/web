@@ -15,18 +15,38 @@ interface ProductGridProps {
 }
 
 import ProductCard from "./ProductCard";
+import { useEffect, useRef } from "react";
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
   selectedCard,
   onSelect,
 }) => {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        gridRef.current &&
+        !gridRef.current.contains(event.target as Node)
+      ) {
+        onSelect(null);
+      }
+    };
+ document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onSelect]);
+
   if (!products.length) {
-    return <p>No products found.</p>;
+    return <p>Nuk u gjet asnjë produkt.</p>;
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex-1">
+    <div 
+    ref={gridRef}
+    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 flex-1">
       {products.map((product) => (
         <ProductCard
           key={product.id}

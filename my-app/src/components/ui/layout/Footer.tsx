@@ -1,46 +1,14 @@
 const Footer: React.FC = () => {
   return (
-    <div
-      style={{
-        marginLeft: "30px",
-        marginRight: "70px",
-        marginBottom: "3%",
-        paddingBottom: "3%",
-        width: "calc(100% - 100px)",
-        textAlign: "center",
-        backgroundColor: "#ffffff",
-        padding: "1rem",
-        boxSizing: "border-box",
-      }}
-    >
-      <p
-        style={{
-          margin: "0",
-          color: "black",
-          position: "relative",
-          textAlign: "left",
-          wordWrap: "break-word",
-          overflowWrap: "break-word",
-        }}
-      >
-        Our mission is to connect the world and create a better future. Our
-        networks keep family, friends, businesses and governments connected and
-        we play an important <br />
-        role in promoting positive change in society.
+    <div className="ml-[30px] mr-[70px] mb-[3%] pb-[3%] w-[calc(100%-100px)] text-center bg-white p-4 box-border">
+      <p className="m-0 text-black relative text-left break-words">
+        Misioni ynë është të lidhim botën dhe të krijojmë një të ardhme më të mirë. 
+        Rrjetet tona i mbajnë të lidhura familjen, miqtë, bizneset dhe qeveritë
+         dhe ne luajmë një rol të rëndësishëm në promovimin e ndryshimeve pozitive në shoqëri.
       </p>
 
-      <p
-        style={{
-          margin: "0",
-          color: "black",
-          position: "relative",
-          textAlign: "left",
-          marginTop: "10px",
-          wordWrap: "break-word",
-          overflowWrap: "break-word",
-        }}
-      >
-        © 2024 TechStore. All rights reserved.
+      <p className="m-0 text-black relative text-left mt-2.5 break-words">
+        © 2026 TechStore. Të gjitha të drejtat e rezervuara.
       </p>
     </div>
   );

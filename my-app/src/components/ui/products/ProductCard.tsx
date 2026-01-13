@@ -22,8 +22,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`border rounded p-4 cursor-pointer ${
-        isSelected ? "ring-2 ring-blue-500" : ""
+      className={`bg-white rounded p-9 cursor-pointer transition-shadow ${
+        isSelected ? " shadow-lg shadow-gray-600 rounded" : ""
       }`}
     >
       <img
@@ -33,9 +33,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
       />
       <h3 className="font-semibold">{product.name}</h3>
       <p className="text-sm text-gray-600">{product.description}</p>
-      <p className="font-bold mt-2">
-        {product.price.toLocaleString()} Lek
-      </p>
+      <p className="mt-7 text-red-600">
+  <span className="font-light text-xl">
+    {product.price.toLocaleString()}
+  </span>{" "}
+  <span className="font-bold">
+    Lekë
+  </span>
+</p>
+
+      <button className="mt-2 px-4 py-2 shadow-red-200">Shiko më shumë</button>
     </div>
   );
 };

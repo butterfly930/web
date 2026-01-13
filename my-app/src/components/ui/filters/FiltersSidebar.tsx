@@ -30,9 +30,8 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
   onClear,
 }) => {
   return (
-    <aside className="w-full md:w-64 bg-white p-4 rounded-lg shadow">
+    <aside className="w-full md:w-64 p-6  pl-2 box-border text-left">
       <h4 className="font-semibold mb-4">Filtrat</h4>
-
       <div className="mb-4">
         <h5 className="font-medium mb-2">Kategoria</h5>
         {categories.map((c) => (
@@ -77,7 +76,7 @@ const FiltersSidebar: React.FC<FiltersSidebarProps> = ({
 
       <button
         onClick={onClear}
-        className="w-full bg-gray-200 py-2 rounded hover:bg-gray-300"
+        className="w-full bg-gray-200 py-2 rounded hover:bg-gray-600"
       >
         Pastro Filtrat
       </button>
