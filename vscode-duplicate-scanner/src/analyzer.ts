@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { parse } from '@babel/parser';
-import traverse from '@babel/traverse';
+import traverse, { NodePath } from '@babel/traverse';
 import * as t from '@babel/types';
 import fg from 'fast-glob';
 
@@ -88,10 +88,10 @@ export class CodeAnalyzer {
             });
 
             traverse(ast, {
-                FunctionDeclaration: (path) => {
+                FunctionDeclaration: (path: NodePath<t.FunctionDeclaration>) => {
                     blocks.push(this.extractFunctionBlock(path, filePath, content, 'function'));
                 },
-                ArrowFunctionExpression: (path) => {
+                ArrowFunctionExpression: (path: NodePath<t.ArrowFunctionExpression>) => {
                     // Only capture arrow functions that are assigned to variables or exported
                     if (
                         path.parent.type === 'VariableDeclarator' ||
@@ -100,10 +100,10 @@ export class CodeAnalyzer {
                         blocks.push(this.extractFunctionBlock(path, filePath, content, 'arrow-function'));
                     }
                 },
-                ClassDeclaration: (path) => {
+                ClassDeclaration: (path: NodePath<t.ClassDeclaration>) => {
                     blocks.push(this.extractClassBlock(path, filePath, content));
                 },
-                ClassMethod: (path) => {
+                ClassMethod: (path: NodePath<t.ClassMethod>) => {
                     blocks.push(this.extractMethodBlock(path, filePath, content));
                 },
             });
@@ -155,7 +155,7 @@ export class CodeAnalyzer {
      * Extract a function block from AST
      */
     private extractFunctionBlock(
-        path: any,
+        path: NodePath<t.FunctionDeclaration | t.ArrowFunctionExpression>,
         filePath: string,
         sourceCode: string,
         type: 'function' | 'arrow-function'
@@ -168,9 +168,9 @@ export class CodeAnalyzer {
         const code = lines.slice(startLine - 1, endLine).join('\n');
 
         const name =
-            type === 'function' && node.id
+            type === 'function' && t.isFunctionDeclaration(node) && node.id
                 ? node.id.name
-                : path.parent.type === 'VariableDeclarator' && path.parent.id
+                : path.parent.type === 'VariableDeclarator' && t.isIdentifier(path.parent.id)
                 ? path.parent.id.name
                 : undefined;
 
@@ -202,7 +202,7 @@ export class CodeAnalyzer {
     /**
      * Extract a class block from AST
      */
-    private extractClassBlock(path: any, filePath: string, sourceCode: string): CodeBlock {
+    private extractClassBlock(path: NodePath<t.ClassDeclaration>, filePath: string, sourceCode: string): CodeBlock {
         const node = path.node;
         const startLine = node.loc?.start.line || 0;
         const endLine = node.loc?.end.line || 0;
@@ -229,7 +229,7 @@ export class CodeAnalyzer {
     /**
      * Extract a method block from AST
      */
-    private extractMethodBlock(path: any, filePath: string, sourceCode: string): CodeBlock {
+    private extractMethodBlock(path: NodePath<t.ClassMethod>, filePath: string, sourceCode: string): CodeBlock {
         const node = path.node;
         const startLine = node.loc?.start.line || 0;
         const endLine = node.loc?.end.line || 0;
