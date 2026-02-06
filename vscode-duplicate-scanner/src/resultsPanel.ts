@@ -307,8 +307,8 @@ export class ResultsPanel {
             </div>
 
             <div class="tabs">
-                <div class="tab active" onclick="showTab('duplicates')">Duplicates (${duplicates.length})</div>
-                <div class="tab" onclick="showTab('suggestions')">Suggestions (${suggestions.length})</div>
+                <div class="tab active" onclick="showTab('duplicates', this)">Duplicates (${duplicates.length})</div>
+                <div class="tab" onclick="showTab('suggestions', this)">Suggestions (${suggestions.length})</div>
             </div>
 
             <div id="duplicates" class="tab-content active">
@@ -371,11 +371,13 @@ export class ResultsPanel {
             <script>
                 const vscode = acquireVsCodeApi();
 
-                function showTab(tabName) {
+                function showTab(tabName, clickedElement) {
                     document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
                     document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
                     
-                    event.target.classList.add('active');
+                    if (clickedElement) {
+                        clickedElement.classList.add('active');
+                    }
                     document.getElementById(tabName).classList.add('active');
                 }
 
