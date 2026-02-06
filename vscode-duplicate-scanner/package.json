@@ -1,0 +1,123 @@
+{
+  "name": "duplicate-logic-scanner",
+  "displayName": "Duplicate Logic Scanner",
+  "description": "Scan multiple repositories for duplicated logic patterns, identify similar functions/classes, and suggest refactoring opportunities",
+  "version": "1.0.0",
+  "publisher": "butterfly930",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/butterfly930/web.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "duplicate",
+    "refactoring",
+    "code quality",
+    "patterns",
+    "similarity"
+  ],
+  "activationEvents": [
+    "onCommand:duplicate-scanner.scanWorkspace",
+    "onCommand:duplicate-scanner.scanMultipleRepos",
+    "onCommand:duplicate-scanner.findSimilarCode",
+    "onCommand:duplicate-scanner.suggestRefactoring"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "duplicate-scanner.scanWorkspace",
+        "title": "Duplicate Scanner: Scan Current Workspace"
+      },
+      {
+        "command": "duplicate-scanner.scanMultipleRepos",
+        "title": "Duplicate Scanner: Scan Multiple Repositories"
+      },
+      {
+        "command": "duplicate-scanner.findSimilarCode",
+        "title": "Duplicate Scanner: Find Similar Code to Selection"
+      },
+      {
+        "command": "duplicate-scanner.suggestRefactoring",
+        "title": "Duplicate Scanner: Suggest Refactoring Opportunities"
+      }
+    ],
+    "configuration": {
+      "title": "Duplicate Logic Scanner",
+      "properties": {
+        "duplicateScanner.minSimilarityThreshold": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0.5,
+          "maximum": 1,
+          "description": "Minimum similarity threshold (0.5-1.0) for detecting duplicate code"
+        },
+        "duplicateScanner.minCodeBlockSize": {
+          "type": "number",
+          "default": 5,
+          "minimum": 3,
+          "description": "Minimum number of lines for a code block to be considered"
+        },
+        "duplicateScanner.excludePatterns": {
+          "type": "array",
+          "default": [
+            "**/node_modules/**",
+            "**/dist/**",
+            "**/build/**",
+            "**/*.min.js",
+            "**/*.test.*",
+            "**/*.spec.*"
+          ],
+          "description": "Glob patterns for files to exclude from scanning"
+        },
+        "duplicateScanner.includePatterns": {
+          "type": "array",
+          "default": [
+            "**/*.js",
+            "**/*.ts",
+            "**/*.jsx",
+            "**/*.tsx"
+          ],
+          "description": "Glob patterns for files to include in scanning"
+        },
+        "duplicateScanner.enableCrossRepoScanning": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable scanning across multiple repositories"
+        },
+        "duplicateScanner.repositoryPaths": {
+          "type": "array",
+          "default": [],
+          "description": "List of repository paths for cross-repository scanning"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^2.22.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.23.6",
+    "@babel/traverse": "^7.23.6",
+    "@babel/types": "^7.23.6",
+    "fast-glob": "^3.3.2",
+    "leven": "^3.1.0"
+  }
+}
